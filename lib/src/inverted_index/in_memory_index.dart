@@ -58,16 +58,17 @@ class InMemoryIndex extends InMemoryIndexBase {
   /// - [keywordPostings] is the in-memory postings hashmap for the indexer. Pass a
   ///   [PostingsMap] instance at instantiation, otherwise an empty [PostingsMap]
   ///   will be initialized.
-  InMemoryIndex(
-      {required this.analyzer,
-      required this.collectionSize,
-      DftMap? dictionary,
-      PostingsMap? postings,
-      KeywordPostingsMap? keywordPostings,
-      KGramsMap? kGramIndex,
-      this.k = 2,
-      this.nGramRange,
-      this.zones = const <String, double>{}}) {
+  InMemoryIndex({
+    required this.analyzer,
+    required this.collectionSize,
+    DftMap? dictionary,
+    PostingsMap? postings,
+    KeywordPostingsMap? keywordPostings,
+    KGramsMap? kGramIndex,
+    this.k = 2,
+    this.nGramRange,
+    this.zones = const <String, double>{},
+  }) {
     this.dictionary = dictionary ?? {};
     this.postings = postings ?? {};
     this.keywordPostings = keywordPostings ?? {};
@@ -117,7 +118,7 @@ abstract class InMemoryIndexBase
 ///   in-memory [kGramIndex] hashmap; and
 /// - [upsertKGramIndex] inserts entries into the in-memory [kGramIndex] hashmap,
 ///   overwriting any existing entries.
-abstract class InMemoryIndexMixin implements InvertedIndex {
+mixin InMemoryIndexMixin implements InvertedIndex {
   //
 
   /// Returns the size of the indexed collection.
@@ -143,7 +144,8 @@ abstract class InMemoryIndexMixin implements InvertedIndex {
 
   @override
   Future<KeywordPostingsMap> getKeywordPostings(
-      Iterable<String> keywords) async {
+    Iterable<String> keywords,
+  ) async {
     final KeywordPostingsMap retVal = {};
     for (final e in keywords) {
       final entry = keywordPostings[e];

@@ -86,21 +86,22 @@ class AsyncCallbackIndex extends AsyncCallbackIndexBase {
   ///   for a collection of keywords from a index repository; and
   /// - [keywordPostingsUpdater] passes a [KeywordPostingsMap] subset for
   ///   persisting to a index repository.
-  AsyncCallbackIndex(
-      {required this.collectionSizeLoader,
-      required this.dictionaryLoader,
-      required this.dictionaryUpdater,
-      required this.dictionaryLengthLoader,
-      required this.kGramIndexLoader,
-      required this.kGramIndexUpdater,
-      required this.postingsLoader,
-      required this.postingsUpdater,
-      required this.keywordPostingsLoader,
-      required this.keywordPostingsUpdater,
-      required this.analyzer,
-      this.k = 2,
-      this.nGramRange,
-      this.zones = const <String, double>{}});
+  AsyncCallbackIndex({
+    required this.collectionSizeLoader,
+    required this.dictionaryLoader,
+    required this.dictionaryUpdater,
+    required this.dictionaryLengthLoader,
+    required this.kGramIndexLoader,
+    required this.kGramIndexUpdater,
+    required this.postingsLoader,
+    required this.postingsUpdater,
+    required this.keywordPostingsLoader,
+    required this.keywordPostingsUpdater,
+    required this.analyzer,
+    this.k = 2,
+    this.nGramRange,
+    this.zones = const <String, double>{},
+  });
 }
 
 /// Base class implementation of [InvertedIndex] with [AsyncCallbackIndexMixin].
@@ -144,7 +145,7 @@ abstract class AsyncCallbackIndexBase
 /// - [upsertKGramIndex ] calls [kGramIndexUpdater];
 /// - [getPostings] calls [postingsLoader]; and
 /// - [upsertPostings] calls [postingsUpdater].
-abstract class AsyncCallbackIndexMixin implements InvertedIndex {
+mixin AsyncCallbackIndexMixin implements InvertedIndex {
   //
 
   /// Asynchronously retrieves the number of terms in the vocabulary.
